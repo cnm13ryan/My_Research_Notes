@@ -32,3 +32,8 @@ site with Hugo and publishes it to GitHub Pages. To enable automated deployment:
    site.
 
 The published blog will be available at your configured GitHub Pages URL.
+
+## Custom Styles
+
+SCSS files are organized under `static/assets/css/`.
+Edit the partials (`_variables.scss`, `_base.scss`, `_layout.scss`, `_components.scss`, `_responsive.scss`) and Hugo will process them via `main.scss`.
