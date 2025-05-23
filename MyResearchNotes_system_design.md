@@ -11,13 +11,13 @@
 
 ### Frameworks and Libraries
 - **Google Fonts (Inter)**: For typography as specified in the style guide
-- **Hugo Plugins**: 
-  - jekyll-feed: For generating RSS feed
-  - jekyll-seo-tag: For better SEO optimization
-  - jekyll-paginate: For pagination functionality
+- **Hugo Built‑in Features**:
+  - Automatic RSS generation
+  - SEO meta tags via partial templates
+  - Built-in pagination
 
 ### Implementation Strategy
-1. **Setup Hugo Structure**: Implement the basic Hugo folder structure with _layouts, _includes, assets, etc.
+1. **Setup Hugo Structure**: Implement the basic Hugo folder structure with `layouts`, `partials`, `assets`, etc.
 2. **Create Base Templates**: Develop the default, home, and post layouts
 3. **Style Implementation**: Create the SCSS files following the provided style guide
 4. **Interactive Features**: Implement the category filtering using JavaScript
@@ -50,13 +50,13 @@ The system will use the following data structures:
 3. **Page**: Represents individual pages like about.md
 4. **Category**: A classification for posts
 
-The interfaces will be primarily through Hugo's Hugo templates templating language, which allows accessing these data structures in HTML templates.
+The interfaces will be primarily through Hugo's Go template language, which allows accessing these data structures in HTML templates.
 
 ## Program call flow
 
 1. **Initialization**:
-   - Hugo reads _config.yml for site configuration
-   - Hugo processes all markdown files in _posts/
+   - Hugo reads `config.toml` for site configuration
+   - Hugo processes all Markdown files in `content/posts/`
 
 2. **Page Generation**:
    - For each post/page, Hugo applies the appropriate layout template
@@ -75,7 +75,7 @@ The interfaces will be primarily through Hugo's Hugo templates templating langua
 
 2. **Image Handling**: The requirements specify image paths but don't detail how images should be handled or optimized. We'll assume standard image optimization practices.
 
-3. **SEO Requirements**: Beyond using jekyll-seo-tag, specific SEO requirements aren't detailed. We'll implement standard SEO best practices.
+3. **SEO Requirements**: Beyond the default meta tags provided by Hugo partials, specific SEO requirements aren't detailed. We'll implement standard SEO best practices.
 
 4. **Analytics**: No analytics requirements are specified. If needed, Google Analytics or similar could be added later.
 
