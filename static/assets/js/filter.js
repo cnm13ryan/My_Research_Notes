@@ -6,6 +6,12 @@
 document.addEventListener('DOMContentLoaded', function() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const gridItems = document.querySelectorAll('.grid-item');
+
+  // Ensure required elements exist before setting up listeners
+  if (filterButtons.length === 0 || gridItems.length === 0) {
+    console.warn('filter.js: missing filter buttons or grid items.');
+    return;
+  }
   
   // Event listener for filter buttons
   filterButtons.forEach(button => {
