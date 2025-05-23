@@ -1,11 +1,11 @@
 /**
- * filter.js - Category filtering functionality for the homepage
- * This script filters article cards based on the selected category
+ * filter.js – Category filtering functionality for the homepage
+ * Filters article cards based on the selected category.
  */
 
-// Query selector constants
+// Query-selector constants
 const FILTER_BUTTONS_SELECTOR = '.filter-btn';
-const GRID_ITEM_SELECTOR = '.grid-item';
+const GRID_ITEM_SELECTOR      = '.grid-item';
 
 // Helper functions to show and hide items with transitions
 function showItem(item) {
@@ -21,33 +21,33 @@ function hideItem(item) {
   item.style.opacity = '0';
   setTimeout(() => {
     item.style.display = 'none';
-  }, 400); // Match this with the CSS transition time
+  }, 400); // Keep this in sync with CSS
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   const filterButtons = document.querySelectorAll(FILTER_BUTTONS_SELECTOR);
-  const gridItems = document.querySelectorAll(GRID_ITEM_SELECTOR);
-  
-  // Event listener for filter buttons
-  filterButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const selectedCategory = this.getAttribute('data-category');
-      
-      // Remove active class from all buttons
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      
-      // Add active class to clicked button
-      this.classList.add('active');
-      
-      // Show or hide articles based on category
-      gridItems.forEach(item => {
-        const itemCategory = item.getAttribute('data-category');
+  const gridItems     = document.querySelectorAll(GRID_ITEM_SELECTOR);
 
-        if (selectedCategory === 'all' || selectedCategory === itemCategory) {
-          showItem(item);
-        } else {
-          hideItem(item);
-        }
+  // Abort early if the expected elements aren’t on the page
+  if (filterButtons.length === 0 || gridItems.length === 0) {
+    console.warn('filter.js: missing filter buttons or grid items.');
+    return;
+  }
+
+  // Delegate click handler to each filter button
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const selectedCategory = button.dataset.category;
+
+      // Update active-button styling
+      filterButtons.forEach(btn => btn.classList.toggle('active', btn === button));
+
+      // Show or hide grid items
+      gridItems.forEach(item => {
+        const itemCategory = item.dataset.category;
+        (selectedCategory === 'all' || selectedCategory === itemCategory)
+          ? showItem(item)
+          : hideItem(item);
       });
     });
   });
